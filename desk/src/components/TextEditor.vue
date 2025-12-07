@@ -38,7 +38,7 @@
             </div>
             <div class="flex items-center gap-2">
               <Button
-                label="Discard"
+                :label="__('Discard')"
                 theme="gray"
                 variant="subtle"
                 @click="
@@ -62,6 +62,7 @@ import { useAuthStore } from "@/stores/auth";
 import { PreserveVideoControls } from "@/tiptap-extensions";
 import { getFontFamily } from "@/utils";
 import { TextEditor as FTextEditor, TextEditorFixedMenu } from "frappe-ui";
+import { __ } from "@/translation";
 import { computed, nextTick, ref } from "vue";
 
 interface P {

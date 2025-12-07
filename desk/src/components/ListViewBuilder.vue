@@ -7,7 +7,7 @@
     <QuickFilters v-if="!isMobileView" class="flex-1" />
     <div class="flex items-start gap-2 justify-end h-full" v-if="!isMobileView">
       <Button
-        label="Save Changes"
+        :label="__('Save Changes')"
         v-if="isViewUpdated && canSaveView"
         @click="handleViewUpdate"
       />
@@ -131,6 +131,7 @@ import {
   views,
 } from "@/composables/useView";
 import { useAuthStore } from "@/stores/auth";
+import { __ } from "@/translation";
 import { globalStore } from "@/stores/globalStore";
 import { capture } from "@/telemetry";
 import { View, ViewType } from "@/types";

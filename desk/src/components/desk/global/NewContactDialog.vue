@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Dialog v-model="open" :options="{ title: 'Create New Contact' }">
+    <Dialog v-model="open" :options="{ title: __('Create New Contact') }">
       <template #body-content>
         <div class="space-y-4">
           <div
@@ -29,14 +29,14 @@
               v-model="state[field.value]"
               :options="customerResource.data"
               class="form-control flex-1"
-              placeholder="Link to a customer record"
+              :placeholder="__('Link to a customer record')"
               :hide-me="true"
             />
             <ErrorMessage :message="error[field.error]" />
           </div>
           <div class="flex justify-end space-x-2">
             <Button
-              label="Create"
+              :label="__('Create')"
               :loading="contactResource.loading"
               theme="gray"
               variant="solid"
@@ -51,6 +51,7 @@
 
 <script setup lang="ts">
 import { useContactStore } from "@/stores/contact";
+import { __ } from "@/translation";
 import { computed, ref } from "vue";
 
 import {

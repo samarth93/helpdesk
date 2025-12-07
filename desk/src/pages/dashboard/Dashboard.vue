@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <LayoutHeader>
       <template #left-header>
-        <div class="text-lg font-medium text-gray-900">Dashboard</div>
+        <div class="text-lg font-medium text-gray-900">{{ __('Dashboard') }}</div>
       </template>
       <template #right-header> </template>
     </LayoutHeader>
@@ -15,7 +15,7 @@
           :options="options"
           class="!form-control !w-48"
           v-model="preset"
-          placeholder="Select Range"
+          :placeholder="__('Select Range')"
           @change="filters.period = preset"
         >
           <template #default>
@@ -36,7 +36,7 @@
           ref="datePickerRef"
           v-model="filters.period"
           variant="outline"
-          placeholder="Period"
+          :placeholder="__('Period')"
           @update:model-value="
             (e:string) => {
               showDatePicker = false;
@@ -53,7 +53,7 @@
           v-if="isManager"
           class="form-control w-48"
           doctype="HD Team"
-          placeholder="Team"
+          :placeholder="__('Team')"
           v-model="filters.team"
           :page-length="5"
           :hide-me="true"
@@ -66,7 +66,7 @@
           v-if="isManager"
           class="form-control w-48"
           doctype="HD Agent"
-          placeholder="Agent"
+          :placeholder="__('Agent')"
           v-model="filters.agent"
           :page-length="5"
           :filters="agentFilter"
@@ -147,6 +147,7 @@ import {
   usePageMeta,
 } from "frappe-ui";
 import { computed, h, onMounted, reactive, ref, watch } from "vue";
+import { __ } from "@/translation";
 
 const { isManager, userId } = useAuthStore();
 

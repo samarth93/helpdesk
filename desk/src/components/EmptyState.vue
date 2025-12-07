@@ -8,7 +8,7 @@
       <!-- title -->
       <span>{{ title }}</span>
       <!-- Button which emits Empty State Action -->
-      <Button label="Create" @click="emit('emptyStateAction')" variant="subtle">
+      <Button :label="__('Create')" @click="emit('emptyStateAction')" variant="subtle">
         <template #prefix><FeatherIcon name="plus" class="h-4" /></template>
       </Button>
     </div>
@@ -16,6 +16,7 @@
 </template>
 
 <script setup lang="ts">
+import { __ } from "@/translation";
 import { VNode } from "vue";
 interface Props {
   title: string;
@@ -29,5 +30,6 @@ withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits(["emptyStateAction"]);
 </script>
+
 
 <style lang="scss" scoped></style>

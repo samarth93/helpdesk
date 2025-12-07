@@ -1,35 +1,35 @@
 <template>
-  <Dialog v-model="show" :options="{ title: 'Export' }">
+  <Dialog v-model="show" :options="{ title: __('Export') }">
     <template #body-content>
       <FormControl
         v-model="form.export_type"
         variant="outline"
-        :label="'Export Type'"
+        :label="__('Export Type')"
         type="select"
         :options="[
           {
-            label: 'Excel',
+            label: __('Excel'),
             value: 'Excel',
           },
           {
-            label: 'CSV',
+            label: __('CSV'),
             value: 'CSV',
           },
         ]"
-        :placeholder="'Excel'"
+        :placeholder="__('Excel')"
       />
 
       <div class="mt-3">
         <FormControl
           v-model="form.export_all"
           type="checkbox"
-          :label="`Export All ${rowCount} Record(s)`"
+          :label="__('Export All {0} Record(s)', [rowCount])"
         />
       </div>
     </template>
     <template #actions>
       <Button
-        label="Download"
+        :label="__('Download')"
         variant="solid"
         @click="() => emit('update', form)"
         class="w-full"
@@ -39,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import { __ } from "@/translation";
 import { reactive } from "vue";
 
 defineProps<{

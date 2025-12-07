@@ -2,14 +2,14 @@
   <Dialog
     v-model="show"
     :options="{
-      title: 'Assign To',
+      title: __('Assign To'),
       size: 'xl',
     }"
   >
     <template #body-content>
       <AutocompleteNew
         v-if="showRestrictedMembers"
-        placeholder="Search agents"
+        :placeholder="__('Search agents')"
         :model-value="search"
         :options="members"
         @update:model-value="
@@ -86,6 +86,7 @@ import { useConfigStore } from "@/stores/config";
 import { useUserStore } from "@/stores/user";
 import { call, createResource } from "frappe-ui";
 import { useOnboarding } from "frappe-ui/frappe";
+import { __ } from "@/translation";
 import { computed, onMounted, ref } from "vue";
 
 const props = defineProps({

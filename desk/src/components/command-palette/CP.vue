@@ -8,7 +8,7 @@
               <LucideSearch class="h-4 w-4" />
             </div>
             <ComboboxInput
-              placeholder="Search tickets, emails, comments, or #234 to navigate to ticket"
+              :placeholder="__('Search tickets, emails, comments, or #234 to navigate to ticket')"
               class="pl-11.5 pr-4.5 w-full border-none bg-transparent py-3 text-base text-gray-800 placeholder:text-gray-500 focus:ring-0"
               autocomplete="off"
               @input="onInput"
@@ -63,6 +63,7 @@ import { useDevice } from "@/composables";
 import { useShortcut } from "@/composables/shortcuts";
 
 import { Dialog } from "frappe-ui";
+import { __ } from "@/translation";
 import { computed, h, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 

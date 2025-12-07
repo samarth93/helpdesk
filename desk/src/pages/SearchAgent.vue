@@ -13,7 +13,7 @@
           <TextInput
             ref="searchInput"
             class="flex-1"
-            placeholder="Search tickets, comments, and communications..."
+            :placeholder="__('Search tickets, comments, and communications...')"
             autocomplete="off"
             :model-value="query"
             @update:model-value="updateQuery"
@@ -47,8 +47,8 @@
               @update:model-value="
                 (values) => updateFilter('agent_group', values)
               "
-              placeholder="Team"
-              label="Team"
+              :placeholder="__('Team')"
+              :label="__('Team')"
             />
 
             <!-- Status Filter -->
@@ -56,8 +56,8 @@
               :options="statusFilterOptions"
               :model-value="activeFilters.status || []"
               @update:model-value="(values) => updateFilter('status', values)"
-              placeholder="Status"
-              label="Status"
+              :placeholder="__('Status')"
+              :label="__('Status')"
             />
 
             <!-- Priority Filter -->
@@ -65,8 +65,8 @@
               :options="priorityFilterOptions"
               :model-value="activeFilters.priority || []"
               @update:model-value="(values) => updateFilter('priority', values)"
-              placeholder="Priority"
-              label="Priority"
+              :placeholder="__('Priority')"
+              :label="__('Priority')"
             />
 
             <!-- Document Type Filter -->
@@ -74,8 +74,8 @@
               :options="doctypesFilterOptions"
               :model-value="activeFilters.doctype || []"
               @update:model-value="(values) => updateFilter('doctype', values)"
-              placeholder="Type"
-              label="Type"
+              :placeholder="__('Type')"
+              :label="__('Type')"
             />
             <Button
               v-if="hasActiveFilters()"
@@ -83,7 +83,7 @@
               class="ml-auto text-ink-gray-5"
               variant="gray-ghost"
               @click="clearFilters"
-              label="Clear all filters"
+              :label="__('Clear all filters')"
             />
           </div>
         </div>
@@ -213,6 +213,7 @@ import {
   TextInput,
 } from "frappe-ui";
 import { computed, onMounted, ref, useTemplateRef, watch } from "vue";
+import { __ } from "@/translation";
 import { useRoute, useRouter } from "vue-router";
 // Icons
 

@@ -18,7 +18,7 @@
           >
             <template #default="{ uploading, openFileSelector }">
               <Button
-                :label="contact.doc?.image ? 'Change photo' : 'Upload photo'"
+                :label="contact.doc?.image ? __('Change photo') : __('Upload photo')"
                 :loading="uploading"
                 @click="openFileSelector"
               />
@@ -26,19 +26,19 @@
           </FileUploader>
           <Button
             v-if="contact.doc?.image"
-            label="Remove photo"
+            :label="__('Remove photo')"
             @click="updateImage(null)"
           />
           <Button
             v-if="!contact.doc?.user && isManager"
-            label="Invite as user"
+            :label="__('Invite as user')"
             @click="inviteContact"
             :loading="isLoading"
           />
         </div>
         <div class="w-full space-y-2 text-sm text-gray-700">
           <div class="space-y-1">
-            <div class="text-xs">Emails</div>
+            <div class="text-xs">{{ __('Emails') }}</div>
             <MultiSelect
               v-model:items="emails"
               placeholder="john.doe@example.com"
@@ -46,7 +46,7 @@
             />
           </div>
           <div class="space-y-1">
-            <div class="text-xs">Phone Nos</div>
+            <div class="text-xs">{{ __('Phone Nos') }}</div>
             <MultiSelect
               v-model:items="phones"
               placeholder="+91 98765 43210"
@@ -54,11 +54,11 @@
             />
           </div>
           <div class="space-y-1">
-            <div class="text-xs">Customer</div>
+            <div class="text-xs">{{ __('Customer') }}</div>
             <Link
               doctype="HD Customer"
               class="form-control flex-1"
-              placeholder="Link to a customer"
+              :placeholder="__('Link to a customer')"
               v-model="selectedCustomer"
               :hide-me="true"
             />
@@ -83,6 +83,7 @@ import { useOnboarding } from "frappe-ui/frappe";
 import type { Ref } from "vue";
 import { computed, ref } from "vue";
 import zod from "zod";
+import { __ } from "@/translation";
 
 import Link from "@/components/frappe-ui/Link.vue";
 import MultiSelect from "@/components/MultiSelect.vue";

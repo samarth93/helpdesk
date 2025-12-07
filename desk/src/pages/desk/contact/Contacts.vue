@@ -2,11 +2,11 @@
   <div class="flex flex-col">
     <LayoutHeader>
       <template #left-header>
-        <div class="text-lg font-medium text-gray-900">Contacts</div>
+        <div class="text-lg font-medium text-gray-900">{{ __('Contacts') }}</div>
       </template>
       <template #right-header>
         <Button
-          label="Create"
+          :label="__('Create')"
           theme="gray"
           variant="solid"
           @click="showNewContactModal = !showNewContactModal"
@@ -41,6 +41,7 @@ import { LayoutHeader, ListViewBuilder } from "@/components";
 import NewContactDialog from "@/components/desk/global/NewContactDialog.vue";
 import { PhoneIcon } from "@/components/icons";
 import { Avatar, toast, usePageMeta } from "frappe-ui";
+import { __ } from "@/translation";
 import { computed, h, ref } from "vue";
 import ContactDialog from "./ContactDialog.vue";
 import { showNewContactModal } from "./dialogState";

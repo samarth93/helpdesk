@@ -20,7 +20,7 @@
       <Dropdown v-slot="{ open }" :options="dropdownOptions">
         <Button
           :disabled="props.disableAddCondition"
-          label="Add condition"
+          :label="__('Add condition')"
           icon-left="plus"
           :icon-right="open ? 'chevron-up' : 'chevron-down'"
         />
@@ -31,6 +31,7 @@
 
 <script setup lang="ts">
 import { Button, Dropdown } from "frappe-ui";
+import { __ } from "@/translation";
 import { computed, onMounted } from "vue";
 import CFCondition from "./CFCondition.vue";
 import { filterableFields } from "./filterableFields";

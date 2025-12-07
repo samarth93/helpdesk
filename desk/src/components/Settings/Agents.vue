@@ -6,7 +6,7 @@
     <template #header-actions>
       <Button
         @click="() => setActiveSettingsTab('Invite Agents')"
-        label="New"
+        :label="__('New')"
         variant="solid"
       >
         <template #prefix>
@@ -199,6 +199,7 @@
 import { useAuthStore } from "@/stores/auth";
 import { useUserStore } from "@/stores/user";
 import { Avatar, Button, call, Dropdown, FeatherIcon, toast } from "frappe-ui";
+import { __ } from "@/translation";
 import { h, onUnmounted } from "vue";
 import LucideCheck from "~icons/lucide/check";
 import { activeFilter, useAgents } from "./agents";

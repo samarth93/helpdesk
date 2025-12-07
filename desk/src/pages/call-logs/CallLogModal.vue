@@ -21,7 +21,7 @@
         <div class="flex flex-col gap-4">
           <div class="grid grid-cols-2 gap-4">
             <div class="flex flex-col gap-1.5">
-              <FormLabel label="Type" required />
+              <FormLabel :label="__('Type')" required />
               <Select
                 v-model="callLog.type"
                 :options="callLogTypeOptions"
@@ -30,7 +30,7 @@
               <ErrorMessage :message="errors.type" />
             </div>
             <div class="flex flex-col gap-1.5">
-              <FormLabel label="To" required />
+              <FormLabel :label="__('To')" required />
               <FormControl
                 v-model="callLog.to"
                 type="text"
@@ -41,7 +41,7 @@
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="flex flex-col gap-1.5">
-              <FormLabel label="From" required />
+              <FormLabel :label="__('From')" required />
               <FormControl
                 v-model="callLog.from"
                 type="text"
@@ -50,7 +50,7 @@
               <ErrorMessage :message="errors.from" />
             </div>
             <div class="flex flex-col gap-1.5">
-              <FormLabel label="Status" required />
+              <FormLabel :label="__('Status')" required />
               <Select
                 v-model="callLog.status"
                 :options="callLogStatusOptions"
@@ -61,7 +61,7 @@
           </div>
           <div class="grid grid-cols-2 gap-4">
             <div class="flex flex-col gap-1.5">
-              <FormLabel label="Duration" required />
+              <FormLabel :label="__('Duration')" required />
               <FormControl
                 v-model="callLog.duration"
                 type="number"
@@ -77,8 +77,8 @@
               <Link
                 :value="callLog.receiver"
                 :doctype="'User'"
-                :placeholder="'Select'"
-                label="Call Received By"
+                :placeholder="__('Select')"
+                :label="__('Call Received By')"
                 @change="(data) => (callLog.receiver = data)"
               />
             </div>
@@ -89,8 +89,8 @@
               <Link
                 :value="callLog.caller"
                 :doctype="'User'"
-                :placeholder="'Select'"
-                label="Caller"
+                :placeholder="__('Select')"
+                :label="__('Caller')"
                 @change="(data) => (callLog.caller = data)"
               />
             </div>
@@ -98,8 +98,8 @@
               <Link
                 :value="callLog.ticket"
                 :doctype="'HD Ticket'"
-                :placeholder="'Select'"
-                label="Ticket"
+                :placeholder="__('Select')"
+                :label="__('Ticket')"
                 :show-description="true"
                 @change="(data) => (callLog.ticket = String(data))"
               />
@@ -136,6 +136,7 @@ import {
   toast,
   type DialogProps,
 } from "frappe-ui";
+import { __ } from "@/translation";
 import { computed, ref, watch } from "vue";
 
 const show = defineModel<boolean>();

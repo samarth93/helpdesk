@@ -8,7 +8,7 @@
     <template #actions>
       <Button
         class="w-full"
-        label="Confirm"
+        :label="__('Confirm')"
         variant="solid"
         :loading="isLoading"
         @click="onConfirm"
@@ -17,6 +17,7 @@
   </Dialog>
 </template>
 <script>
+import { __ } from "@/translation";
 import { Button, Dialog } from "frappe-ui";
 
 export default {

@@ -69,7 +69,7 @@
           </div>
           <div class="flex items-center justify-end space-x-2 w-[40%]">
             <Button
-              label="Discard"
+              :label="__('Discard')"
               @click="
                 () => {
                   newComment = '';
@@ -112,6 +112,7 @@ import { AttachmentIcon } from "@/components/icons/";
 import { useTyping } from "@/composables/realtime";
 import { useAgentStore } from "@/stores/agent";
 import { useAuthStore } from "@/stores/auth";
+import { __ } from "@/translation";
 import { PreserveVideoControls } from "@/tiptap-extensions";
 import {
   getFontFamily,

@@ -15,7 +15,7 @@
           <FileUploader @success="(file) => updateImage(file)">
             <template #default="{ uploading, openFileSelector }">
               <Button
-                :label="customer.doc?.image ? 'Change photo' : 'Upload photo'"
+                :label="customer.doc?.image ? __('Change photo') : __('Upload photo')"
                 :loading="uploading"
                 @click="openFileSelector"
               />
@@ -23,12 +23,12 @@
           </FileUploader>
           <Button
             v-if="customer.doc?.image"
-            label="Remove photo"
+            :label="__('Remove photo')"
             @click="updateImage(null)"
           />
         </div>
         <form class="w-full" @submit.prevent="update">
-          <Input v-model="domain" label="Domain" placeholder="example.com" />
+          <Input v-model="domain" :label="__('Domain')" placeholder="example.com" />
         </form>
       </div>
     </template>
@@ -43,6 +43,7 @@ import {
   FileUploader,
   toast,
 } from "frappe-ui";
+import { __ } from "@/translation";
 import { computed } from "vue";
 
 const props = defineProps({

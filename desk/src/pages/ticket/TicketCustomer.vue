@@ -11,7 +11,7 @@
         />
         <Button
           v-if="ticket.data.status !== 'Closed'"
-          label="Close"
+          :label="__('Close')"
           theme="gray"
           variant="solid"
           @click="handleClose()"
@@ -40,7 +40,7 @@
             v-model:attachments="attachments"
             v-model:content="editorContent"
             v-model:expand="isExpanded"
-            placeholder="Type a message"
+            :placeholder="__('Type a message')"
             autofocus
             @clear="() => (isExpanded = false)"
             :uploadFunction="
@@ -49,7 +49,7 @@
           >
             <template #bottom-right>
               <Button
-                label="Send"
+                :label="__('Send')"
                 theme="gray"
                 variant="solid"
                 :disabled="$refs.editor?.editor.isEmpty || send.loading"
@@ -88,6 +88,7 @@ import {
   ref,
 } from "vue";
 import { useRouter } from "vue-router";
+import { __ } from "@/translation";
 import { ITicket } from "./symbols";
 import TicketConversation from "./TicketConversation.vue";
 import TicketCustomerTemplateFields from "./TicketCustomerTemplateFields.vue";
@@ -200,11 +201,11 @@ function handleClose() {
 
 function showConfirmationDialog() {
   $dialog({
-    title: "Close Ticket",
-    message: "Are you sure you want to close this ticket?",
+    title: __("Close Ticket"),
+    message: __("Are you sure you want to close this ticket?"),
     actions: [
       {
-        label: "Confirm",
+        label: __("Confirm"),
         variant: "solid",
         onClick(close: Function) {
           ticket.data.status = "Closed";
@@ -241,7 +242,7 @@ const setValue = createResource({
 });
 
 const breadcrumbs = computed(() => {
-  let items = [{ label: "Tickets", route: { name: "TicketsCustomer" } }];
+  let items = [{ label: __("Tickets"), route: { name: "TicketsCustomer" } }];
   items.push({
     label: ticket.data?.subject,
     route: { name: "TicketCustomer" },

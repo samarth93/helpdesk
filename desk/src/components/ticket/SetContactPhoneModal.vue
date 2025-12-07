@@ -2,10 +2,10 @@
   <Dialog
     v-model="show"
     :options="{
-      title: 'Set Phone Number',
+      title: __('Set Phone Number'),
       actions: [
         {
-          label: 'Set Phone Number',
+          label: __('Set Phone Number'),
           variant: 'solid',
           onClick: onSubmit,
         },
@@ -21,7 +21,7 @@
         <div class="flex flex-col gap-2 mt-6">
           <FormControl
             v-model="contactDetails.phone"
-            label="Phone"
+            :label="__('Phone')"
             type="text"
             size="sm"
             variant="subtle"
@@ -37,6 +37,7 @@
 
 <script setup lang="ts">
 import { createResource, Dialog, ErrorMessage, toast } from "frappe-ui";
+import { __ } from "@/translation";
 import { ref, watch } from "vue";
 import { z } from "zod";
 

@@ -84,17 +84,17 @@
       <span>{{ emptyText }}</span>
       <Button
         v-if="title == 'Emails'"
-        label="New Email"
+        :label="__('New Email')"
         @click="communicationAreaRef?.toggleEmailBox() ?? toggleEmailBox()"
       />
       <Button
         v-else-if="title == 'Comments'"
-        label="New Comment"
+        :label="__('New Comment')"
         @click="communicationAreaRef?.toggleCommentBox() ?? toggleCommentBox()"
       />
       <Button
         v-else-if="title == 'Calls'"
-        label="Make a Call"
+        :label="__('Make a Call')"
         @click="makeCall()"
       />
     </div>
@@ -111,6 +111,7 @@ import {
   PhoneIcon,
 } from "@/components/icons";
 import { toggleCommentBox, toggleEmailBox } from "@/pages/ticket/modalStates";
+import { __ } from "@/translation";
 import { useUserStore } from "@/stores/user";
 import { TicketActivity } from "@/types";
 import { isElementInViewport } from "@/utils";
@@ -163,14 +164,14 @@ const communicationAreaRef: Ref = inject("communicationArea");
 const makeCall = inject<() => void>("makeCall");
 
 const emptyText = computed(() => {
-  let text = "No Activities";
+  let text = __("No Activities");
   if (props.title == "Emails") {
-    text = "No Email Communications";
+    text = __("No Email Communications");
   } else if (props.title == "Comments") {
-    text = "No Comments";
+    text = __("No Comments");
     return text;
   } else if (props.title == "Calls") {
-    text = "No Calls";
+    text = __("No Calls");
     return text;
   }
 });

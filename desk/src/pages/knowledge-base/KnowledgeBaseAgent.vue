@@ -2,11 +2,11 @@
   <div class="flex flex-col">
     <LayoutHeader>
       <template #left-header>
-        <div class="text-lg font-medium text-gray-900">Knowledge Base</div>
+        <div class="text-lg font-medium text-gray-900">{{ __('Knowledge Base') }}</div>
       </template>
       <template #right-header>
         <Dropdown :options="headerOptions">
-          <Button label="Create" variant="solid">
+          <Button :label="__('Create')" variant="solid">
             <template #prefix>
               <LucidePlus class="h-4 w-4" />
             </template>
@@ -64,6 +64,7 @@ import {
   usePageMeta,
 } from "frappe-ui";
 import { computed, h, onMounted, reactive, ref } from "vue";
+import { __ } from "@/translation";
 import { useRouter } from "vue-router";
 import LucideMerge from "~icons/lucide/merge";
 

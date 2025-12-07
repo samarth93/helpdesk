@@ -18,7 +18,7 @@
             </template>
           </TextInput>
           <Button
-            label="Create"
+            :label="__('Create')"
             theme="gray"
             variant="solid"
             @click="
@@ -94,7 +94,7 @@
       </div>
       <EmptyState
         v-else
-        title="No Canned Responses Found"
+        :title="__('No Canned Responses Found')"
         @emptyStateAction="showNewDialog = true"
       />
     </div>
@@ -141,6 +141,7 @@ import {
   usePageMeta,
 } from "frappe-ui";
 import { ref } from "vue";
+import { __ } from "@/translation";
 import { useRoute } from "vue-router";
 import EmptyState from "../components/EmptyState.vue";
 

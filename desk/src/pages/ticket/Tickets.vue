@@ -14,7 +14,7 @@
         <RouterLink
           :to="{ name: isCustomerPortal ? 'TicketNew' : 'TicketAgentNew' }"
         >
-          <Button label="Create" theme="gray" variant="solid">
+          <Button :label="__('Create')" theme="gray" variant="solid">
             <template #prefix>
               <LucidePlus class="h-4 w-4" />
             </template>
@@ -55,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import { __ } from "@/translation";
 import { LayoutHeader, ListViewBuilder } from "@/components";
 import {
   EditIcon,
@@ -101,7 +102,7 @@ const { getStatus } = useTicketStatusStore();
 const listSelections = ref(new Set());
 const selectBannerActions = [
   {
-    label: "Export",
+    label: __("Export"),
     icon: "download",
     onClick: (selections: Set<string>) => {
       listSelections.value = new Set(selections);
@@ -150,7 +151,7 @@ const options = {
   showSelectBanner: true,
   selectBannerActions,
   emptyState: {
-    title: "No Tickets Found",
+    title: __("No Tickets Found"),
     icon: h(TicketIcon, {
       class: "h-10 w-10",
     }),
@@ -165,20 +166,20 @@ const options = {
 function handle_response_by_field(row: any, item: string) {
   if (!row.first_responded_on && dayjs(item).isBefore(new Date())) {
     return h(Badge, {
-      label: "Failed",
+      label: __("Failed"),
       theme: "red",
       variant: "outline",
     });
   }
   if (row.first_responded_on && dayjs(row.first_responded_on).isBefore(item)) {
     return h(Badge, {
-      label: "Fulfilled",
+      label: __("Fulfilled"),
       theme: "green",
       variant: "outline",
     });
   } else if (dayjs(row.first_responded_on).isAfter(item)) {
     return h(Badge, {
-      label: "Failed",
+      label: __("Failed"),
       theme: "red",
       variant: "outline",
     });
@@ -197,19 +198,19 @@ function handle_resolution_by_field(row: any, item: string) {
   const status = getStatus(row.status) || {};
   if (status.category === "Paused") {
     return h(Badge, {
-      label: "Paused",
+      label: __("Paused"),
       theme: "blue",
       variant: "outline",
     });
   } else if (row.resolution_date && dayjs(row.resolution_date).isBefore(item)) {
     return h(Badge, {
-      label: "Fulfilled",
+      label: __("Fulfilled"),
       theme: "green",
       variant: "outline",
     });
   } else if (dayjs(row.resolution_date).isAfter(item)) {
     return h(Badge, {
-      label: "Failed",
+      label: __("Failed"),
       theme: "red",
       variant: "outline",
     });
@@ -278,10 +279,10 @@ let viewDialog = reactive({
 const dropdownOptions = computed(() => {
   const items = [
     {
-      group: "Default Views",
+      group: __("Default Views"),
       items: [
         {
-          label: "List View",
+          label: __("List View"),
           icon: "align-justify",
           onClick: () =>
             router.push({
@@ -295,29 +296,29 @@ const dropdownOptions = computed(() => {
   // Saved Views
   if (getCurrentUserViews.value?.length !== 0) {
     items.push({
-      group: "Saved Views",
+      group: __("Saved Views"),
       items: parseViews(getCurrentUserViews.value),
     });
   }
   if (pinnedViews.value?.length !== 0) {
     items.push({
-      group: "Private Views",
+      group: __("Private Views"),
       items: parseViews(pinnedViews.value),
     });
   }
   if (publicViews.value?.length !== 0) {
     items.push({
-      group: "Public Views",
+      group: __("Public Views"),
       items: parseViews(publicViews.value),
     });
   }
 
   items.push({
-    group: "Create View",
+    group: __("Create View"),
     hideLabel: true,
     items: [
       {
-        label: "Create View",
+        label: __("Create View"),
         icon: "plus",
         onClick: () => {
           resetState();

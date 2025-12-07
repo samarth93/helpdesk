@@ -2,11 +2,11 @@
   <div class="flex flex-col">
     <LayoutHeader>
       <template #left-header>
-        <div class="text-lg font-medium text-gray-900">Customers</div>
+        <div class="text-lg font-medium text-gray-900">{{ __('Customers') }}</div>
       </template>
       <template #right-header>
         <Button
-          label="Create"
+          :label="__('Create')"
           theme="gray"
           variant="solid"
           @click="isDialogVisible = !isDialogVisible"
@@ -41,6 +41,7 @@ import LayoutHeader from "@/components/LayoutHeader.vue";
 import ListViewBuilder from "@/components/ListViewBuilder.vue";
 import NewCustomerDialog from "@/components/desk/global/NewCustomerDialog.vue";
 import { Avatar, usePageMeta } from "frappe-ui";
+import { __ } from "@/translation";
 import { computed, h, ref } from "vue";
 import CustomerDialog from "./CustomerDialog.vue";
 

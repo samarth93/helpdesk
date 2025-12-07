@@ -22,7 +22,7 @@
             <div class="mb-3 flex flex-col gap-1">
               <SidebarLink
                 class="relative"
-                label="Notifications"
+                :label="__('Notifications')"
                 :icon="LucideBell"
                 :on-click="() => (sidebarOpened = false)"
                 :is-expanded="true"
@@ -40,7 +40,7 @@
               <SidebarLink
                 v-if="!isCustomerPortal"
                 class="relative"
-                label="Dashboard"
+                :label="__('Dashboard')"
                 :icon="LucideLayoutDashboard"
                 :to="'Dashboard'"
                 :is-active="isActiveTab('Dashboard')"
@@ -114,6 +114,7 @@ import {
   TransitionRoot,
 } from "@headlessui/vue";
 import { computed, markRaw, onMounted } from "vue";
+import { __ } from "@/translation";
 import { useRoute, useRouter } from "vue-router";
 
 import { Section } from "@/components";
@@ -131,8 +132,8 @@ import { useAuthStore } from "@/stores/auth";
 import { isCustomerPortal } from "@/utils";
 import Apps from "../Apps.vue";
 import {
-  agentPortalSidebarOptions,
-  customerPortalSidebarOptions,
+  getAgentPortalSidebarOptions,
+  getCustomerPortalSidebarOptions,
 } from "./layoutSettings";
 import { useTelephonyStore } from "@/stores/telephony";
 import { storeToRefs } from "pinia";
@@ -147,16 +148,16 @@ const { isCallingEnabled } = storeToRefs(telephonyStore);
 
 const allViews = computed(() => {
   let items = isCustomerPortal.value
-    ? customerPortalSidebarOptions
-    : agentPortalSidebarOptions;
+    ? getCustomerPortalSidebarOptions()
+    : getAgentPortalSidebarOptions();
 
   if (!isCallingEnabled.value) {
-    items = items.filter((item) => item.label !== "Call Logs");
+    items = items.filter((item) => item.label !== __("Call Logs"));
   }
 
   const options = [
     {
-      label: "All Views",
+      label: __("All Views"),
       hideLabel: true,
       opened: true,
       views: items,
@@ -164,7 +165,7 @@ const allViews = computed(() => {
   ];
   if (publicViews.value?.length && !isCustomerPortal.value) {
     options.push({
-      label: "Public Views",
+      label: __("Public Views"),
       opened: true,
       hideLabel: false,
       views: parseViews(publicViews.value),
@@ -172,7 +173,7 @@ const allViews = computed(() => {
   }
   if (pinnedViews.value?.length) {
     options.push({
-      label: "Private Views",
+      label: __("Private Views"),
       opened: true,
       hideLabel: false,
       views: parseViews(pinnedViews.value),
@@ -201,7 +202,7 @@ function parseViews(views) {
 
 const customerPortalDropdown = computed(() => [
   {
-    label: "Log out",
+    label: __("Log out"),
     icon: "log-out",
     onClick: () => authStore.logout(),
   },
@@ -212,7 +213,7 @@ const agentPortalDropdown = computed(() => [
     component: markRaw(Apps),
   },
   {
-    label: "Customer portal",
+    label: __("Customer portal"),
     icon: "users",
     onClick: () => {
       const path = router.resolve({ name: "TicketsCustomer" });
@@ -221,16 +222,16 @@ const agentPortalDropdown = computed(() => [
   },
   {
     icon: "life-buoy",
-    label: "Support",
+    label: __("Support"),
     onClick: () => window.open("https://t.me/frappedesk"),
   },
   {
     icon: "book-open",
-    label: "Docs",
+    label: __("Docs"),
     onClick: () => window.open("https://docs.frappe.io/helpdesk"),
   },
   {
-    label: "Log out",
+    label: __("Log out"),
     icon: "log-out",
     onClick: () => authStore.logout(),
   },

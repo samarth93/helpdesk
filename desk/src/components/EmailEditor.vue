@@ -134,7 +134,7 @@
         <div
           class="flex items-center justify-end space-x-2 sm:mt-0 w-[40%] mr-9"
         >
-          <Button label="Discard" @click="handleDiscard" />
+          <Button :label="__('Discard')" @click="handleDiscard" />
           <Button
             variant="solid"
             :disabled="emailEmpty"
@@ -186,6 +186,7 @@ import {
   toast,
 } from "frappe-ui";
 import { useOnboarding } from "frappe-ui/frappe";
+import { __ } from "@/translation";
 import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 
 const editorRef = ref(null);
